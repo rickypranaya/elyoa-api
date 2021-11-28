@@ -10,7 +10,7 @@ router.get("/",(req,res, next)=>{
         // res.json({
         //     data : 'hi'
         // });
-        res.send('goods pharmacy is up');
+        res.send('elyo api is up');
 
     }catch(e){
         console.log(e)
@@ -239,7 +239,6 @@ router.post("/product_add", async (req,res, next)=>{
 });
 
 router.post("/product_get", async (req,res, next)=>{
-    const params = req.body;
     let results;
 
     try
