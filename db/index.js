@@ -42,4 +42,58 @@ elyodb.product_get = ()=>{
     })
 };
 
+
+elyodb.product_add = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `product` (`name`, `price`) VALUES (?)"
+        pool.query(sql,[[params.name, params.price]], (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            console.log(results)
+            return resolve (results);
+        })
+    })
+};
+
+elyodb.product_remove = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('DELETE FROM product WHERE id = ?', [params.id],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
+elyodb.product_edit = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "UPDATE product set name = ?, price = ?  WHERE id = ?"
+        pool.query(sql,[params.name, params.price, params.id], (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            console.log(results)
+            return resolve (results);
+        })
+    })
+};
+
+elyodb.product_search = (params)=>{
+    var keyword = '%' + params.keyword+ '%';
+
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM product WHERE name LIKE N? ORDER BY name ASC' ,[keyword],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
+
+
+
 module.exports = elyodb;
