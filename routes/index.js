@@ -293,6 +293,24 @@ router.post("/product_edit", async (req,res, next)=>{
     }
 });
 
+router.post("/count_packet", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.count_packet(params);   
+        res.json({
+            status : 200,
+            data : results.length
+        });
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
+
 router.post("/user_get", async (req,res, next)=>{
     const params = req.body;
     let results;

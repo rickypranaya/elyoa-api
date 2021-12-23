@@ -80,6 +80,17 @@ elyodb.product_edit = (params)=>{
     })
 };
 
+elyodb.count_packet = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM transaction where created_at >= ?', [params.created_at],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 elyodb.product_search = (params)=>{
     var keyword = '%' + params.keyword+ '%';
 
