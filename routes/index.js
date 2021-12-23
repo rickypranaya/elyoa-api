@@ -302,7 +302,7 @@ router.post("/count_packet", async (req,res, next)=>{
         results = await db.count_packet(params);   
         res.json({
             status : 200,
-            data : results.length
+            data : results
         });
         
     }catch(e){
