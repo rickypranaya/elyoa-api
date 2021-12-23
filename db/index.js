@@ -104,6 +104,18 @@ elyodb.product_search = (params)=>{
     })
 };
 
+elyodb.transaction_add = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `transaction` (`no`, `nama`, `no_telpon`, `email`, `kota`, `desa`, `postcode`, `alamat`, `pembayaran`, `item`, `total_penjualan`, `ongkos_kirim`, `subsidi`, `total`, `created_at`, `edited_at`) VALUES (?)"
+        pool.query(sql,[[params.no, params.nama, params.no_telpon, params.email, params.kota, params.desa, params.postcode, params.alamat, params.pembayaran, params.item, params.total_penjualan, params.ongkir, params.subsidi, params.total, params.created_at, params.edited_at]], (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            console.log(results)
+            return resolve (results);
+        })
+    })
+};
 
 
 
