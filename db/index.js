@@ -82,7 +82,7 @@ elyodb.product_edit = (params)=>{
 
 elyodb.count_packet = (params)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM transaction where created_at >= ?', [params.created_at],(err,results)=>{
+        pool.query('SELECT * FROM transaction where created_at >= ? ORDER BY no DESC', [params.created_at],(err,results)=>{
             if (err){
                 return reject (err);
             } 
