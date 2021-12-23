@@ -117,6 +117,31 @@ elyodb.transaction_add = (params)=>{
     })
 };
 
+goodsdb.search_get = (params)=>{
+    var keyword = '%' + params.keyword+ '%';
+
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM transaction WHERE (nama LIKE N? OR no LIKE N? OR no_telpon LIKE N?) ORDER BY created_at DESC' ,[keyword, keyword, keyword ],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
+
+goodsdb.transaction_get = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT id, no, nama, item, total FROM transaction where created_at = ? ORDER BY id DESC', [ params.created_at],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 
 
 module.exports = elyodb;
