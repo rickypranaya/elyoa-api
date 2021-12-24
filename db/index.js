@@ -117,7 +117,7 @@ elyodb.transaction_add = (params)=>{
     })
 };
 
-goodsdb.search_get = (params)=>{
+elyodb.search_get = (params)=>{
     var keyword = '%' + params.keyword+ '%';
 
     return new Promise((resolve,reject)=>{
