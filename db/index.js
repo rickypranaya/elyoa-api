@@ -133,7 +133,7 @@ elyodb.search_get = (params)=>{
 
 elyodb.transaction_get = (params)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT id, no, nama, item, total, created_at FROM transaction where created_at = ? ORDER BY id DESC', [ params.created_at],(err,results)=>{
+        pool.query('SELECT * FROM transaction where created_at = ? ORDER BY id DESC', [ params.created_at],(err,results)=>{
             if (err){
                 return reject (err);
             } 
